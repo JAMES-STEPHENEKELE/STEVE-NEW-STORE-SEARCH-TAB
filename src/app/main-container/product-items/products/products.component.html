@@ -1,0 +1,49 @@
+<div class="ekart--product--item"  [ngStyle]="{backgroundColor: '#E2E2E2'}">
+  <app-products *ngFor="let list in products">
+  <div class="ekart-wishlist-sale-container">
+      <div class="ekart--add--to--wishlist">
+        <fa-icon [icon]="hearts"></fa-icon>
+      </div>
+      <div class="ekart-on-sale-tag" *ngIf="list.discountPrice">{{(100- (list.discountPrice / list.price * 100)).toFixed(2)}}</div>
+    </div>
+    <div class="ekart--product--image">
+        <img [src]="list.imageURL"  class="ekart--product--image">
+    </div>
+    <div class="ekart--add--to--price">
+        #{{list.price}}
+    </div>
+    <div class="ekart--product--name">{{list.name}}</div>
+    <div class="ekart--product--category">{{list.gender}} . {{list.category}} . {{list.brand}}</div>
+    <div class="ekart--product--available-colors">{{list.color.length}} Colors . Best Seller</div>
+    <div
+    class="ekart--products--avaliavility" [ngStyle]="{fontWeight: 'bold', color: list.is_in_inventory? 'green': 'blue'}">
+    <!-- we ngStyle is an attribute directives is to set inline css dynamically on html using typescript expression -->
+      {{list.is_in_inventory?'Stock Is Available': 'Stock Is Not available'}}
+      <app-pagnator >
+        <p-rating [(ngModel)]="list.rating" stars="5" [cancel]="false">
+          <ng-template pTemplate="cancelicon">
+              <img 
+                  src="https://primefaces.org/cdn/primeng/images/demo/rating/cancel.png" 
+                  width="25px" 
+                  height="25px" />
+          </ng-template>
+          <ng-template pTemplate="onicon">
+              <img 
+                  src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png" 
+                  width="25px" 
+                  height="25px" />
+          </ng-template>
+          <ng-template pTemplate="officon">
+              <img 
+                  src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png"
+                  width="25px"
+                  height="25px" />
+          </ng-template>
+     </p-rating>
+        
+      </app-pagnator>
+      </div>
+    </app-products>
+
+    </div>
+  
